@@ -8,12 +8,12 @@
 
 import Foundation
 
-class IdaValidationResultPresenter: NSObject, IdaValidationListener {
+public class IdaValidationResultPresenter: NSObject, IdaValidationListener {
     func processValidationResult(validationResult: ValidationResult) {
     }
 }
 
-class SwitchDemoValidatorResultPresenter : IdaValidationResultPresenter {
+public class SwitchDemoValidatorResultPresenter : IdaValidationResultPresenter {
     override func processValidationResult(validationResult: ValidationResult) {
         let row = validationResult.target as! SwitchRow
         row.cell.textLabel?.textColor = validationResult.isValid ? UIColor.blackColor() : UIColor.redColor()

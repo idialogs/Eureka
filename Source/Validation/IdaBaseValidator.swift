@@ -8,9 +8,9 @@
 
 import Foundation
 
-typealias ValidationRule = (AnyObject?) -> ValidationResult
+public typealias ValidationRule = (AnyObject?) -> ValidationResult
 
-class IdaBaseValidator: NSObject,IdaValidator {
+public class IdaBaseValidator: NSObject,IdaValidator {
     private var target:AnyObject
     private var rule:ValidationRule
     private var wr_listeners:[Weak<AnyObject>]=[]
@@ -22,7 +22,7 @@ class IdaBaseValidator: NSObject,IdaValidator {
     }
     
     // MARK: - Validation
-    func validate(autoPresent: Bool) -> ValidationResult {
+    public func validate(autoPresent: Bool) -> ValidationResult {
         let result = rule(target)
         if (autoPresent) {
             self.iterateListeners({ (listener) in
@@ -32,9 +32,9 @@ class IdaBaseValidator: NSObject,IdaValidator {
         return result
     }
     
-    
+
     // MARK: - Listeners
-    func addListener(listener:IdaValidationListener) {
+    public func addListener(listener:IdaValidationListener) {
         // find the previously added reference
         guard listenerWeakReference(listener) == nil else{
             return
@@ -42,7 +42,7 @@ class IdaBaseValidator: NSObject,IdaValidator {
         wr_listeners.append(Weak(value: listener))
     }
     
-    func removeListener(listener:IdaValidationListener) {
+    public func removeListener(listener:IdaValidationListener) {
         if let weakReference = listenerWeakReference(listener) {
             wr_listeners.removeAtIndex(indexOfWeakReference(weakReference))
         }
