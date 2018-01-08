@@ -74,7 +74,7 @@ open class DictionaryMessageCell : Cell<DictionaryMessage>, CellType {
     // MARK: - Private Properties
     fileprivate lazy var hideCellConstraint : NSLayoutConstraint = { [unowned self] in
         let constraint = NSLayoutConstraint(item: self.contentView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 0)
-        constraint.priority = UILayoutPriorityRequired
+        constraint.priority = UILayoutPriority.required
         return constraint
     }()
 
